@@ -6,7 +6,6 @@ import Category2 from "../pages/Category2";
 import Category3 from "../pages/Category3";
 import Category4 from "../pages/Category4";
 import Category5 from "../pages/Category5";
-import { element } from "prop-types";
 import Product from "../pages/Product";
 import Cart from "../pages/Cart";
 import Home from "../components/home/Home";
