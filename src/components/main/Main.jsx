@@ -13,10 +13,20 @@ export default function Main() {
   let minPrice = 0;
   let maxPrice = Number.MAX_SAFE_INTEGER
 
-  useEffect(() => {
+  useEffect(async () => {
     setLoading(true)
 
-    return axios.get("https://api.escuelajs.co/api/v1/products").then((res) => res?.data).then((data) => setInfo(data)).catch(error => setError(error)).finally(() => setLoading(false))
+    try {
+      try {
+        const res = await axios.get("https://api.escuelajs.co/api/v1/products");
+        const data = res?.data;
+        return setInfo(data);
+      } catch (error) {
+        return setError(error);
+      }
+    } finally {
+      return setLoading(false);
+    }
    
   }, [])
   const filteredProducts = () => {
