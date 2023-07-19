@@ -5,6 +5,7 @@ import Card from '../components/card/Card'
 import axios from 'axios'
 import Cards from '../components/card/Cards'
 import '../components/card/Card.scss'
+import Footer from '../components/footer/Footer'
 
 export default function Product() {
   const [info, setInfo] = useState()
@@ -48,6 +49,7 @@ export default function Product() {
           )}
         </div>
       </main>
+      <Footer />
     </>
   )
 }
