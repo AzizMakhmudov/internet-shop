@@ -1,0 +1,151 @@
+.auth {
+  &__heading {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 50px;
+  }
+  &__input--name {
+    width: 100%;
+    padding: 20px 10px;
+    outline: 5px solid transparent black;
+    border: 1px solid rgb(85, 85, 85);
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+
+  &__input--name::placeholder {
+    color: rgb(146, 145, 145);
+  }
+  &__input--email {
+    width: 100%;
+    padding: 20px 10px;
+    outline: 5px solid transparent black;
+    border: 1px solid rgb(85, 85, 85);
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+
+  &__input--email::placeholder {
+    color: rgb(146, 145, 145);
+  }
+  &__input--password {
+    width: 100%;
+    padding: 20px 10px;
+    outline: 5px solid transparent black;
+    border: 1px solid rgb(85, 85, 85);
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+
+  &__input--password::placeholder {
+    color: rgb(146, 145, 145);
+  }
+  &__btn {
+    cursor: pointer;
+    width: 100%;
+    padding: 20px;
+    color: white;
+    background-color: rgb(5, 127, 197);
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    outline: none;
+    margin-bottom: 50px;
+  }
+}
+
+.btn-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.btn-auth {
+  display: inline-block;
+  outline: 0;
+  width: 49%;
+  text-align: center;
+  cursor: pointer;
+  padding: 17px 30px;
+  border: 0;
+  color: #fff;
+  font-size: 17.5px;
+  border: 2px solid transparent;
+  border-color: #000;
+  color: #000;
+  background: transparent;
+  font-weight: 800;
+  line-height: 30px;
+  transition: background, color 0.1s ease-in-out;
+}
+
+.btn-auth:hover {
+  background-color: #000;
+  color: #fff;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  background-color: white;
+  border: none;
+  outline: none;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-login {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  padding: 0 16px;
+  background-color: #fff;
+  border-radius: 0.25rem;
+  border: 1px solid #0070d2;
+  color: #0070d2;
+  font-size: 13px;
+  line-height: 30px;
+  font-weight: 400;
+  text-align: center;
+}
+
+.btn-login:hover {
+  background-color: #f4f6f9;
+}
+
+.title-modal {
+  text-align: center;
+  margin-top: -23px;
+}
