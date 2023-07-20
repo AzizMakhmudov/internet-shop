@@ -14,22 +14,22 @@ export default function Product() {
   const { id } = useParams()
   const [data, setData] = useState([])
 
-  async function fetchData() {
-    let res = await axios.get(`https://api.escuelajs.co/api/v1/products/${id}`).catch((error) => setError(error)).finally(() => setLoading(false))
-    let data = await res?.data
-    setInfo(data)
-    let resCategory = await axios.get(`https://api.escuelajs.co/api/v1/categories/${data.category.id}/products`).catch((error) => setError(error)).finally(() => setLoading(false))
-    let dataCategory = await resCategory?.data
-    setData(dataCategory)
-  }
-
   useEffect(() => {
     setLoading(true)
-    return () => {
-      fetchData()
+    async function fetchData() {
+      try {
+        const res = await axios.get(`https://api.escuelajs.co/api/v1/products/${id}`)
+        setInfo(res?.data)
+        const data = await axios.get(`https://api.escuelajs.co/api/v1/categories/${res.data.category.id}/products`)
+        setData(data?.data)
+      } catch (error) {
+        setError(error)
+      } finally {
+        setLoading(false)
+      }
     }
+    fetchData()
   }, [])
-
 
   return (
     <>
@@ -37,7 +37,7 @@ export default function Product() {
       <main>
         <div className="container">
           {error && <pre>{error.toString()}</pre>}
-          {loading ? <div className='loader'></div> : (
+          {loading ? <div className='loader' style={{ marginTop: 50 }}></div> : (
             <>
               <Card title={info?.title} description={info?.description} price={info?.price} id={info?.id} img1={info?.images[0]} img2={info?.images[1]} img3={info?.images[2]} />
               <div className="cards">
