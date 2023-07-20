@@ -17,26 +17,40 @@ export default function Profile() {
   const { logOut } = useContext(AuthContext)
   useEffect(() => {
     setLoading(true)
-    return () => {
-      axios.get('https://api.escuelajs.co/api/v1/auth/profile', {
-        headers: {
-          "Authorization": `Bearer ${auth.access_token}`
-        }
-      }).then(res => {
-        setInfo(res.data)
-      }).catch(error => setError(error)).finally(() => setLoading(false))
+    async function fetchData() {
+      try {
+        const res = await axios.get("https://api.escuelajs.co/api/v1/auth/profile", {
+          headers: {
+            'Authorization': `Bearer ${auth.access_token}`
+          }
+        })
+        setInfo(res?.data)
+        return res
+      } catch (error) {
+        setError(error)
+      } finally {
+        setLoading(false)
+      }
     }
+    fetchData()
   }, [])
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     setSaveLoading(true)
     evt.preventDefault();
     const formData = new FormData(ref.current)
-    axios.put(`https://api.escuelajs.co/api/v1/users/${info.id}`, {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      password: formData.get('password')
-    }).catch(error => setError(error)).finally(() => setSaveLoading(false))
+    try {
+      const res = axios.put(`https://api.escuelajs.co/api/v1/users/${info.id}`, {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        password: formData.get('password')
+      })
+      return res
+    } catch (error) {
+      setError(error)
+    } finally {
+      setSaveLoading(false)
+    }
   }
 
   return (
