@@ -10,9 +10,18 @@ export default function Category4() {
   const [info, setInfo] = useState([])
   useEffect(() => {
     setLoading(true)
-    return () => {
-      axios.get("https://api.escuelajs.co/api/v1/categories/4/products").then((res) => res?.data).then((data) => setInfo(data)).catch((error) => setError(error)).finally(() => setLoading(false))
+    async function fetchData() {
+      try {
+        const res = await axios.get("https://api.escuelajs.co/api/v1/categories/4/products")
+        setInfo(res?.data)
+        return res
+      } catch (error) {
+        setError(error)
+      } finally {
+        setLoading(false)
+      }
     }
+    fetchData()
   }, [])
   return (
     <>
