@@ -12,7 +12,6 @@ import Home from "../components/home/Home";
 
 const router = createBrowserRouter([
   {
-    path: "/",
     element: <App />,
     errorElement: <h2>404 NOT FOUND</h2>,
     children: [
