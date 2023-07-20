@@ -36,7 +36,6 @@ export default function Profile() {
   }, [])
 
   async function handleSubmit(evt) {
-    setSaveLoading(true)
     evt.preventDefault();
     const formData = new FormData(ref.current)
     try {
@@ -56,48 +55,50 @@ export default function Profile() {
   return (
     <>
       <Header />
-      <div className="container">
-        <section className='section'>
-          {loading ? (
-            <div className="outer">
-              <div className='loader' style={{ marginTop: -50 }}></div>
-            </div>
-          ) : (
-            <>
-              <h2 className='section__heading'>Update Profile</h2>
-              <div className="section__layout">
-                <div className="section__user">
-                  {info && (
-                    <div className="section__user--box">
-                      <div className='section__img--box'>
-                        <img src={info.avatar} alt="avatar" width={'80px'} height={'80px'} style={{ borderRadius: '50%' }} />
-                      </div>
-                      <div className='section__user--info'>
-                        <h3 className='section__user--name'>Name: {info.name}</h3>
-                        <p className='section__user--auth'>Email: {info.email}</p>
-                        <p className='section__user--auth'>Password: {info.password}</p>
-                      </div>
-                    </div>
-                  )}
-                  <div className="section__user--logout">
-                    <button className='section__btn' onClick={() => logOut()}>Logout</button>
-                  </div>
-                </div>
-                <form onSubmit={handleSubmit} ref={ref}>
-                  <input className='section__input' type="text" name='name' placeholder='new name' defaultValue={info.name} />
-                  <input className='section__input' type="email" name='email' placeholder='new email' defaultValue={info.email} />
-                  <input className='section__input' autoComplete="on" type="password" name='password' placeholder='new password' defaultValue={info.password} />
-                  <div className='section__btn--boxes'>
-                    <button type='submit' className='section__btn--save'>{saveLoading ? "Loading..." : "Save"}</button>
-                    <button className='section__btn--back' onClick={() => navigate('/')}>Back to Home</button>
-                  </div>
-                </form>
-                {error && <pre>{error.toString()}</pre>}
+      <main>
+        <div className="container">
+          <section className='section'>
+            {loading ? (
+              <div className="outer">
+                <div className='loader' style={{ marginTop: -50 }}></div>
               </div>
-            </>
-          )}
-        </section>
-      </div>
+            ) : (
+              <>
+                <h2 className='section__heading'>Update Profile</h2>
+                <div className="section__layout">
+                  <div className="section__user">
+                    {info && (
+                      <div className="section__user--box">
+                        <div className='section__img--box'>
+                          <img src={info.avatar} alt="avatar" width={'80px'} height={'80px'} style={{ borderRadius: '50%' }} />
+                        </div>
+                        <div className='section__user--info'>
+                          <h3 className='section__user--name'>Name: {info.name}</h3>
+                          <p className='section__user--auth'>Email: {info.email}</p>
+                          <p className='section__user--auth'>Password: {info.password}</p>
+                        </div>
+                      </div>
+                    )}
+                    <div className="section__user--logout">
+                      <button className='section__btn' onClick={() => logOut()}>Logout</button>
+                    </div>
+                  </div>
+                  <form onSubmit={handleSubmit} ref={ref}>
+                    <input className='section__input' type="text" name='name' placeholder='new name' defaultValue={info.name} />
+                    <input className='section__input' type="email" name='email' placeholder='new email' defaultValue={info.email} />
+                    <input className='section__input' autoComplete="on" type="password" name='password' placeholder='new password' defaultValue={info.password} />
+                    <div className='section__btn--boxes'>
+                      <button type='submit' className='section__btn--save' onClick={() => setSaveLoading(true)}>{saveLoading ? "Loading..." : "Save"}</button>
+                      <button className='section__btn--back' onClick={() => navigate('/')}>Back to Home</button>
+                    </div>
+                  </form>
+                  {error && <pre>{error.toString()}</pre>}
+                </div>
+              </>
+            )}
+          </section>
+        </div>
+      </main>
       <Footer />
     </>
   )
