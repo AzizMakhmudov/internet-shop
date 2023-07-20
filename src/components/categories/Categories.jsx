@@ -11,13 +11,27 @@ export default function Categories() {
 
 
   useEffect(() => {
-    return () => {
-      axios.get("https://api.escuelajs.co/api/v1/categories/", {
-        params: {
-          limit: 5
-        }
-      }).then((res) => res?.data).then((data) => setPages(data)).catch(error => setError(error))
+    async function fetchData() {
+      try {
+        const res = await axios.get("https://api.escuelajs.co/api/v1/categories/", {
+          params: {
+            limit: 5
+          }
+        })
+        setPages(res?.data)
+        return res
+      } catch (error) {
+        setError(error)
+      }
     }
+    fetchData()
+    // return () => {
+    //   axios.get("https://api.escuelajs.co/api/v1/categories/", {
+    //     params: {
+    //       limit: 5
+    //     }
+    //   }).then((res) => res?.data).then((data) => setPages(data)).catch(error => setError(error))
+    // }
   }, [])
 
   return (
