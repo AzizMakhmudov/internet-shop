@@ -40,7 +40,7 @@ export default function Profile() {
     evt.preventDefault();
     const formData = new FormData(ref.current)
     try {
-      const res = axios.put(`https://api.escuelajs.co/api/v1/users/${info.id}`, {
+      const res = await axios.put(`https://api.escuelajs.co/api/v1/users/${info.id}`, {
         name: formData.get('name'),
         email: formData.get('email'),
         password: formData.get('password')
