@@ -16,7 +16,7 @@ export default function Category1() {
         setInfo(res?.data)
         return res
       } catch (error) {
-        setError(error)
+        setError(error?.response?.data?.message)
       } finally {
         setLoading(false)
       }
@@ -27,7 +27,7 @@ export default function Category1() {
   return (
     <>
       <Header />
-      {error && <pre>{error.toString()}</pre>}
+      {error && <pre style={{marginBottom: 10}}>{error.toString()}</pre>}
       {loading ? <div className="loader" style={{ marginTop: 50 }}></div> : (
         <div className="cards">
           {info.map((i) => (

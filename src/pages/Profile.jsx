@@ -27,7 +27,7 @@ export default function Profile() {
         setInfo(res?.data)
         return res
       } catch (error) {
-        setError(error)
+        setError(error?.response?.data?.message)
       } finally {
         setLoading(false)
       }
@@ -44,9 +44,14 @@ export default function Profile() {
         email: formData.get('email'),
         password: formData.get('password')
       })
+
+      if (res?.status === 200) {
+        location.reload()
+      }
+
       return res
     } catch (error) {
-      setError(error)
+      setError(error?.response?.data?.message)
     } finally {
       setSaveLoading(false)
     }
@@ -65,6 +70,7 @@ export default function Profile() {
             ) : (
               <>
                 <h2 className='section__heading'>Update Profile</h2>
+                {error && <pre style={{marginBottom: 10}}>{error.toString()}</pre>}
                 <div className="section__layout">
                   <div className="section__user">
                     {info && (
@@ -92,7 +98,6 @@ export default function Profile() {
                       <button className='section__btn--back' onClick={() => navigate('/')}>Back to Home</button>
                     </div>
                   </form>
-                  {error && <pre>{error.toString()}</pre>}
                 </div>
               </>
             )}

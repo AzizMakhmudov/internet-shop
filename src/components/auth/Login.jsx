@@ -25,7 +25,7 @@ export default function Login() {
           setError(new Error(data?.error || "Unexpected Error"));
         }
       })
-      .catch((error) => setError(error))
+      .catch((error) => setError(error?.response?.data?.message))
       .finally(() => setLoading(false));
   }
 
@@ -34,7 +34,7 @@ export default function Login() {
       <div className="container_small">
         <div className="auth">
           <h2 className="auth__heading">Login</h2>
-          {error && <pre>{error.toString()}</pre>}
+          {error && <pre style={{marginBottom: 10}}>{error.toString()}</pre>}
           <form onSubmit={handleSubmit} ref={ref}>
             <input className="auth__input--email" type="email" name="email" placeholder="Email" />
             <input

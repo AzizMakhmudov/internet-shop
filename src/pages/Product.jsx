@@ -23,7 +23,7 @@ export default function Product() {
         const data = await axios.get(`https://api.escuelajs.co/api/v1/categories/${res.data.category.id}/products`)
         setData(data?.data)
       } catch (error) {
-        setError(error)
+        setError(error?.response?.data?.message)
       } finally {
         setLoading(false)
       }
@@ -36,7 +36,7 @@ export default function Product() {
       <Header />
       <main>
         <div className="container">
-          {error && <pre>{error.toString()}</pre>}
+          {error && <pre style={{marginBottom: 10}}>{error.toString()}</pre>}
           {loading ? <div className='loader' style={{ marginTop: 50 }}></div> : (
             <>
               <Card title={info?.title} description={info?.description} price={info?.price} id={info?.id} img1={info?.images[0]} img2={info?.images[1]} img3={info?.images[2]} />

@@ -22,13 +22,12 @@ export default function Main() {
         setInfo(res?.data)
         return res
       } catch (error) {
-        setError(error)
+        setError(error?.response?.data?.message)
       } finally {
         setLoading(false)
       }
     }
     fetchData()
-    // return () => axios.get("https://api.escuelajs.co/api/v1/products").then((res) => res?.data).then((data) => setInfo(data)).catch(error => setError(error)).finally(() => setLoading(false))
   }, [])
   const filteredProducts = () => {
     let filtered = info
@@ -84,7 +83,7 @@ export default function Main() {
       <main>
         <div className="container">
           <Categories />
-          {error && <pre>{error.toString()}</pre>}
+          {error && <pre style={{ marginBottom: 10 }}>{error.toString()}</pre>}
           {loading ? <div className='loader'></div> : (
             <div className="cards">
               {info && filteredProducts()}

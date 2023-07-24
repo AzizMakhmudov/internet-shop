@@ -30,7 +30,7 @@ export default function Register({ onRegister }) {
       } else {
         setError(new Error(data?.message))
       }
-    }).catch(error => setError(error)).finally(() => {
+    }).catch(error => setError(error?.response?.data?.message)).finally(() => {
       setLoading(false);
     })
   }
@@ -56,7 +56,7 @@ export default function Register({ onRegister }) {
       <div className="container_small">
         <div className="auth">
           <h2 className='auth__heading'>Register</h2>
-          {error && <pre>{error.toString()}</pre>}
+          {error && <pre style={{marginBottom: 10}}>{error.toString()}</pre>}
           <form onSubmit={handleSubmit} ref={ref}>
             <input type="text" placeholder="Name" required name="name" className='auth__input--name' />
             <input type="email" placeholder="Email" required name="email" className='auth__input--email' />
