@@ -35,10 +35,6 @@ export default function Register({ onRegister }) {
     })
   }
 
-  function closeModal() {
-    modalRef.current.style.display = "none"
-  }
-
   function onModalOutsideClick(evt) {
     const el = evt.target;
 
@@ -56,7 +52,7 @@ export default function Register({ onRegister }) {
       <div className="container_small">
         <div className="auth">
           <h2 className='auth__heading'>Register</h2>
-          {error && <pre style={{marginBottom: 10}}>{error.toString()}</pre>}
+          {error && <pre style={{ marginBottom: 10 }}>{error.toString()}</pre>}
           <form onSubmit={handleSubmit} ref={ref}>
             <input type="text" placeholder="Name" required name="name" className='auth__input--name' />
             <input type="email" placeholder="Email" required name="email" className='auth__input--email' />
@@ -72,9 +68,10 @@ export default function Register({ onRegister }) {
           </form>
           <div ref={modalRef} id="myModal" className="modal">
             <div className="modal-content">
-              <button onClick={() => closeModal()} className="close">&times;</button>
-              <button className='btn-login' onClick={onRegister}>Login</button>
-              <h4 className='title-modal'>You have successfully registered. Please log in to proceed.</h4>
+              <div className="modal-items">
+                <h4 className='title-modal'>You have successfully registered. Please log in to proceed.</h4>
+                <button className='btn-login' onClick={onRegister}>Login</button>
+              </div>
             </div>
           </div>
         </div>
